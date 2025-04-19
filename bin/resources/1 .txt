@@ -1,0 +1,12 @@
+#Text#
+aehehehehehehe
+
+#Options#
+[1]
+[2]
+
+#Requirements#
+#key# for 2
+
+#Unlocks#
+-card

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.questgame.quest.AppController">
+   <top>
+      <Pane prefHeight="49.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="restoreButton" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#onRestoreButton" text="Restore" />
+            <Button fx:id="editButton" layoutX="81.0" layoutY="12.0" mnemonicParsing="false" onAction="#onEditButton" text="Edit" />
+            <Pane fx:id="editTopPane" disable="true" layoutX="686.0" prefHeight="49.0" prefWidth="233.0" visible="false">
+               <children>
+                  <Label fx:id="forMessages" layoutX="132.0" layoutY="16.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="72.0" layoutY="16.0" text="Stage" />
+                  <TextField fx:id="stageNumber" alignment="CENTER_RIGHT" layoutX="102.0" layoutY="12.0" onAction="#onStageNumber" prefHeight="25.0" prefWidth="30.0" />
+               </children>
+            </Pane>
+            <Button fx:id="restartButton" layoutX="128.0" layoutY="12.0" mnemonicParsing="false" text="Restart" />
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <Pane prefHeight="310.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_LEFT" prefHeight="472.0" prefWidth="100.0" text="WIP" />
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextFlow fx:id="readStage" layoutX="8.0" layoutY="7.0" prefHeight="481.0" prefWidth="804.0" />
+            <TextArea fx:id="writeStage" disable="true" layoutX="9.0" layoutY="7.0" prefHeight="462.0" prefWidth="675.0" visible="false" />
+            <Label fx:id="keyItemsLabel" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="719.0" layoutY="-1.0" prefHeight="24.0" prefWidth="101.0" text="Key Items:" visible="false" />
+            <Label fx:id="keyItems" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="719.0" layoutY="22.0" prefHeight="165.0" prefWidth="101.0" visible="false" />
+         </children>
+      </Pane>
+   </center>
+   <bottom>
+      <Pane prefHeight="29.0" prefWidth="788.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="editBottomPane" disable="true" layoutX="397.0" prefHeight="31.0" prefWidth="524.0" visible="false">
+               <children>
+                  <TextField fx:id="getItemField" layoutX="84.0" layoutY="2.0" prefHeight="25.0" prefWidth="95.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="4.0" prefHeight="27.0" prefWidth="100.0" text="Need item:" />
+                  <TextField fx:id="needItemOptionField" layoutX="470.0" layoutY="2.0" prefHeight="25.0" prefWidth="27.0" />
+                  <Label alignment="CENTER" layoutX="413.0" layoutY="1.0" prefHeight="27.0" prefWidth="57.0" text="for option" />
+                  <TextField fx:id="needItemNameField" layoutX="318.0" layoutY="2.0" prefHeight="25.0" prefWidth="95.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="-16.0" layoutY="1.0" prefHeight="27.0" prefWidth="100.0" text="Get item:" />
+               </children>
+            </Pane>
+            <TextField fx:id="choiceField" layoutX="103.0" layoutY="2.0" />
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>
