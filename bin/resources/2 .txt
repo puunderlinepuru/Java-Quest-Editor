@@ -1,12 +1,16 @@
-#Text#
-фыловрфоыврпфыорвпфыв
+#Text
+#фыловрфоыврпфыорвпфыв
 
-#Options#
-[1]
-[2]
+#Options
+#1
+#2
 
-#Requirements#
-#key# for 2
+#Links
+#1-2
 
-#Unlocks#
--card
+#Requirements
+#key for 2
+
+#Unlocks
+#card
+#thing

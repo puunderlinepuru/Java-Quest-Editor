@@ -37,8 +37,10 @@
          <children>
             <TextFlow fx:id="readStage" layoutX="8.0" layoutY="7.0" prefHeight="481.0" prefWidth="804.0" />
             <TextArea fx:id="writeStage" disable="true" layoutX="9.0" layoutY="7.0" prefHeight="462.0" prefWidth="675.0" visible="false" />
-            <Label fx:id="keyItemsLabel" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="719.0" layoutY="-1.0" prefHeight="24.0" prefWidth="101.0" text="Key Items:" visible="false" />
-            <Label fx:id="keyItems" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="719.0" layoutY="22.0" prefHeight="165.0" prefWidth="101.0" visible="false" />
+            <Label fx:id="itemsNeedLabel" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="719.0" layoutY="-1.0" prefHeight="24.0" prefWidth="101.0" text="Key Items needed:" visible="false" />
+            <Label fx:id="itemsNeed" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="719.0" layoutY="22.0" prefHeight="165.0" prefWidth="101.0" visible="false" />
+            <Label fx:id="itemsGetLabel" alignment="BOTTOM_LEFT" contentDisplay="TOP" disable="true" layoutX="720.0" layoutY="180.0" prefHeight="24.0" prefWidth="101.0" text="Get items:" visible="false" />
+            <Label fx:id="itemsGet" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="720.0" layoutY="210.0" prefHeight="165.0" prefWidth="101.0" visible="false" />
          </children>
       </Pane>
    </center>

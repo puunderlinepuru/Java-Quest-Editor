@@ -1,15 +1,8 @@
 package com.questgame.quest;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
-import java.lang.Object;
-
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -37,9 +30,13 @@ public class AppController {
     @FXML
     TextFlow readStage;
     @FXML
-    Label keyItems;
+    Label itemsNeed;
     @FXML
-    Label keyItemsLabel;
+    Label itemsNeedLabel;
+    @FXML
+    Label itemsGet;
+    @FXML
+    Label itemsGetLabel;
     @FXML
     Label forMessages;
     @FXML
@@ -49,6 +46,9 @@ public class AppController {
 
     FileHandler fileHandler = new FileHandler();
     Text read_text = new Text();
+    String itemsGetString;
+    String itemsNeedString;
+    String[] tempArray;
 
     protected Integer intStageNumber(String checkifnumber) {
         try {
@@ -58,6 +58,14 @@ public class AppController {
             forMessages.setText("<- wrong format");
             return null;
         }
+    }
+
+    @FXML
+    public void initialize(){
+        read_text.setText(fileHandler.getIntro());
+        readStage.getChildren().remove(read_text);
+        readStage.getChildren().add(read_text);
+        writeStage.setText(read_text.getText());
     }
 
 //    restoreButton;
@@ -76,10 +84,14 @@ public class AppController {
             writeStage.setVisible(true);
             writeStage.setDisable(false);
 
-            keyItems.setVisible(true);
-            keyItems.setDisable(false);
-            keyItemsLabel.setVisible(true);
-            keyItemsLabel.setDisable(false);
+            itemsNeed.setVisible(true);
+            itemsNeed.setDisable(false);
+            itemsGet.setVisible(true);
+            itemsGet.setDisable(false);
+            itemsNeedLabel.setVisible(true);
+            itemsNeedLabel.setDisable(false);
+            itemsGetLabel.setVisible(true);
+            itemsGetLabel.setDisable(false);
 
             editBottomPane.setVisible(true);
             editBottomPane.setDisable(false);
@@ -95,10 +107,14 @@ public class AppController {
             writeStage.setVisible(false);
             writeStage.setDisable(true);
 
-            keyItems.setVisible(false);
-            keyItems.setDisable(true);
-            keyItemsLabel.setVisible(false);
-            keyItemsLabel.setDisable(true);
+            itemsNeed.setVisible(false);
+            itemsNeed.setDisable(true);
+            itemsGet.setVisible(false);
+            itemsGet.setDisable(true);
+            itemsNeedLabel.setVisible(false);
+            itemsNeedLabel.setDisable(true);
+            itemsGetLabel.setVisible(false);
+            itemsGetLabel.setDisable(true);
 
             editBottomPane.setVisible(false);
             editBottomPane.setDisable(true);
@@ -139,8 +155,26 @@ public class AppController {
 
         if (intStageNumber(stageNumber.getText()) != null)
         {
-            read_text.setText(fileHandler.getContents(intStageNumber(stageNumber.getText())));
-            System.out.println(intStageNumber(stageNumber.getText()));
+            fileHandler.get((intStageNumber(stageNumber.getText())));
+
+//            Text
+            read_text.setText(fileHandler.text);
+
+//            Get Items
+            itemsGetString = "";
+            for (String a : fileHandler.unlocks) {itemsGetString = itemsGetString.concat(a + "\n");}
+            itemsGet.setText(itemsGetString);
+
+//            Need Items
+            itemsNeedString = "";
+            tempArray = new String[]{};
+            for (int i = 0; i < fileHandler.reqs.size(); i++) {
+                tempArray = fileHandler.reqs.get(i).split("for");
+                itemsNeedString = itemsNeedString.concat(tempArray[0] + " for " + tempArray[1] + "\n");
+            }
+
+            itemsNeed.setText(itemsNeedString);
+//            System.out.println(intStageNumber(stageNumber.getText()));
         }
         else
         {
