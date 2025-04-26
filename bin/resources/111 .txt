@@ -1,0 +1,15 @@
+#Text
+#One of them stops to check if you're hiding somewhere
+
+#Options
+#[1] - take off running
+[2] - Try to fight him
+[3] - Throw something to distract him and move past him back where you come from
+
+#Links
+#3-113
+
+#Requirements
+#key for 3
+
+#Unlocks

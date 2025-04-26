@@ -1,8 +1,9 @@
 #Text
-#Intro
+#Staircase
 
 #Options
-#[1] - ok
+#[1] - go up
+[2] - go down
 
 #Links
 

@@ -1,11 +1,12 @@
 package com.questgame.quest;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AppController {
     @FXML
@@ -18,60 +19,98 @@ public class AppController {
     @FXML
     TextField choiceField;
     @FXML
-    TextField getItemField;
-    @FXML
-    TextField needItemNameField;
-    @FXML
-    TextField needItemOptionField;
-    @FXML
     TextField stageNumber;
+    @FXML
+    TextArea optionsArea;
+    @FXML
+    TextArea itemsNeedArea;
+    @FXML
+    TextArea itemsGetArea;
+    @FXML
+    TextArea linksArea;
     @FXML
     TextArea writeStage;
     @FXML
-    TextFlow readStage;
-    @FXML
-    Label itemsNeed;
+    TextArea readStage;
     @FXML
     Label itemsNeedLabel;
-    @FXML
-    Label itemsGet;
     @FXML
     Label itemsGetLabel;
     @FXML
     Label forMessages;
     @FXML
-    Pane editBottomPane;
+    Label optionsLabel;
+    @FXML
+    Label linksLabel;
     @FXML
     Pane editTopPane;
 
     FileHandler fileHandler = new FileHandler();
-    Text read_text = new Text();
     String itemsGetString;
-    String itemsNeedString;
+    String tempStr;
+    String curr_stage;
     String[] tempArray;
+    String[] tempArray2;
+    List<String> inventory;
 
-    protected Integer intStageNumber(String checkifnumber) {
+    protected void display() {
+
+//            Text
+        if (edit_switch)
+        {
+//            Text
+            writeStage.setText(fileHandler.text);
+
+//            Options
+            optionsArea.setText(fileHandler.options_text);
+
+
+//            Links
+            tempStr = "";
+            for (int i = 0; i < fileHandler.links.size(); i+=2) {
+                tempStr = tempStr.concat(fileHandler.links.get(i) + " - " + fileHandler.links.get(i+1) + "\n");
+            }
+            linksArea.setText(tempStr);
+
+//            Reqs
+            tempStr = "";
+            for (int i = 0; i < fileHandler.reqs.size(); i+=2) {
+                tempStr = tempStr.concat(fileHandler.reqs.get(i) + " for " + fileHandler.reqs.get(i+1) + "\n");
+            }
+            itemsNeedArea.setText(tempStr);
+
+//            Unlocks
+            itemsGetString = "";
+            for (String a : fileHandler.unlocks) {itemsGetString = itemsGetString.concat(a + "\n");}
+            itemsGetArea.setText(itemsGetString);
+
+        }
+        else
+        {
+            readStage.setText(fileHandler.text + "\n\n" + fileHandler.options_text);
+        }
+
+    }
+
+    protected String checkStageNumber(String checkifnumber) {
         try {
             forMessages.setText("");
-            return Integer.parseInt(checkifnumber);
+            return String.valueOf(Integer.parseInt(checkifnumber));
         } catch (NumberFormatException e) {
             forMessages.setText("<- wrong format");
             return null;
         }
     }
 
-    @FXML
-    public void initialize(){
-        read_text.setText(fileHandler.getIntro());
-        readStage.getChildren().remove(read_text);
-        readStage.getChildren().add(read_text);
-        writeStage.setText(read_text.getText());
-    }
-
 //    restoreButton;
     @FXML
     protected void onRestoreButton() {
 
+    }
+
+    @FXML
+    protected void onRestartButton() {
+        initialize();
     }
 
 //    editButton;
@@ -84,21 +123,32 @@ public class AppController {
             writeStage.setVisible(true);
             writeStage.setDisable(false);
 
-            itemsNeed.setVisible(true);
-            itemsNeed.setDisable(false);
-            itemsGet.setVisible(true);
-            itemsGet.setDisable(false);
+            itemsNeedArea.setVisible(true);
+            itemsNeedArea.setDisable(false);
+            itemsGetArea.setVisible(true);
+            itemsGetArea.setDisable(false);
             itemsNeedLabel.setVisible(true);
             itemsNeedLabel.setDisable(false);
             itemsGetLabel.setVisible(true);
             itemsGetLabel.setDisable(false);
 
-            editBottomPane.setVisible(true);
-            editBottomPane.setDisable(false);
+            optionsArea.setVisible(true);
+            optionsArea.setDisable(false);
+            optionsLabel.setVisible(true);
+            optionsLabel.setDisable(false);
+
             editTopPane.setVisible(true);
             editTopPane.setDisable(false);
 
+            linksArea.setVisible(true);
+            linksArea.setDisable(false);
+            linksLabel.setVisible(true);
+            linksLabel.setDisable(false);
+
+
+
             edit_switch = true;
+            System.out.println("editing mode for stage: " + curr_stage);
         }
         else {
             readStage.setVisible(true);
@@ -107,93 +157,161 @@ public class AppController {
             writeStage.setVisible(false);
             writeStage.setDisable(true);
 
-            itemsNeed.setVisible(false);
-            itemsNeed.setDisable(true);
-            itemsGet.setVisible(false);
-            itemsGet.setDisable(true);
+            itemsNeedArea.setVisible(false);
+            itemsNeedArea.setDisable(true);
+            itemsGetArea.setVisible(false);
+            itemsGetArea.setDisable(true);
             itemsNeedLabel.setVisible(false);
             itemsNeedLabel.setDisable(true);
             itemsGetLabel.setVisible(false);
             itemsGetLabel.setDisable(true);
 
-            editBottomPane.setVisible(false);
-            editBottomPane.setDisable(true);
+            optionsArea.setVisible(false);
+            optionsArea.setDisable(true);
+            optionsLabel.setVisible(false);
+            optionsLabel.setDisable(true);
+
             editTopPane.setVisible(false);
             editTopPane.setDisable(true);
 
+            linksArea.setVisible(false);
+            linksArea.setDisable(true);
+            linksLabel.setVisible(false);
+            linksLabel.setDisable(true);
+
             edit_switch = false;
+            System.out.println("reading mode for stage: " + curr_stage);
         }
+        display();
+        fileHandler.get_from_file(curr_stage, edit_switch);
+    }
+
+    @FXML
+    public void initialize(){
+        inventory = new ArrayList<>();
+        curr_stage = "1";
+        edit_switch = false;
+        fileHandler.get_from_file(curr_stage, false);
+        display();
     }
 
 //    choiceField;
     @FXML
     protected void onChoiceFieldEnter() {
-
-    }
-
-//    getItemField;
-    @FXML
-    protected void onItemFieldEnter() {
-
-    }
-
-//    needItemNameField;
-    @FXML
-    protected void onNeedItemNameField() {
-
-    }
-
-//    needItemOptionField;
-    @FXML
-    protected void onNeedItemOptionField() {
-
+        if (choiceField.getText().isBlank()) {return;}
+        fileHandler.get_from_file(curr_stage, edit_switch);
+        System.out.println("getting info for: " + curr_stage);
+        if (fileHandler.options >= Integer.parseInt(choiceField.getText()))
+        {
+            if (!fileHandler.reqs.isEmpty()) {
+                if (fileHandler.reqs.contains(choiceField.getText())) {
+                    if (inventory.contains(fileHandler.reqs.get(fileHandler.reqs.indexOf(choiceField.getText()) - 1))) {
+                        if (!fileHandler.links.isEmpty()) {
+                            curr_stage = fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1);
+                            System.out.println("stage changed to: " + curr_stage);
+                            System.out.println("links to " + fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1));
+                        } else {
+                            curr_stage += checkStageNumber(choiceField.getText());
+                        }
+                        System.out.println("displaying stage: " + curr_stage);
+                        inventory.addAll(fileHandler.unlocks);
+                        fileHandler.get_from_file(curr_stage, edit_switch);
+                        display();
+                        choiceField.setText("");
+                    }
+                }
+                choiceField.setText("");
+            } else {
+                if (!fileHandler.links.isEmpty()) {
+                    curr_stage = fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1);
+                    System.out.println("stage changed to: " + curr_stage);
+                    System.out.println("links to " + fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1));
+                } else {
+                    curr_stage += checkStageNumber(choiceField.getText());
+                }
+                System.out.println("displaying stage: " + curr_stage);
+                inventory.addAll(fileHandler.unlocks);
+                fileHandler.get_from_file(curr_stage, edit_switch);
+                display();
+                choiceField.setText("");
+            }
+        } else {
+            choiceField.setText("");
+        }
+        System.out.println("stage: " + curr_stage);
     }
 
 //    stageNumber;
     @FXML
     protected void onStageNumber() {
 
-        if (intStageNumber(stageNumber.getText()) != null)
+        if (checkStageNumber(stageNumber.getText()) != null)
         {
-            fileHandler.get((intStageNumber(stageNumber.getText())));
-
-//            Text
-            read_text.setText(fileHandler.text);
-
-//            Get Items
-            itemsGetString = "";
-            for (String a : fileHandler.unlocks) {itemsGetString = itemsGetString.concat(a + "\n");}
-            itemsGet.setText(itemsGetString);
-
-//            Need Items
-            itemsNeedString = "";
-            tempArray = new String[]{};
-            for (int i = 0; i < fileHandler.reqs.size(); i++) {
-                tempArray = fileHandler.reqs.get(i).split("for");
-                itemsNeedString = itemsNeedString.concat(tempArray[0] + " for " + tempArray[1] + "\n");
-            }
-
-            itemsNeed.setText(itemsNeedString);
-//            System.out.println(intStageNumber(stageNumber.getText()));
+            curr_stage = checkStageNumber(stageNumber.getText());
+            fileHandler.get_from_file(curr_stage, edit_switch);
+            display();
         }
         else
         {
             System.out.println("something wrong");
         }
-
-        writeStage.setText(read_text.getText());
-
-        readStage.getChildren().remove(read_text);
-        readStage.getChildren().add(read_text);
     }
 
 //    writeStage;
     @FXML
     protected void onWriteStage() {
 
+        if (!curr_stage.isEmpty())
+        {
+            get_from_app();
+            fileHandler.formatFile(curr_stage);
+            display();
+        }
+
     }
 
-//    readStage;
+    protected void get_from_app() {
 
-//    keyItems;
+        fileHandler.text = "";
+        fileHandler.options = 0;
+        fileHandler.options_text = "";
+        fileHandler.links = new ArrayList<>();
+        fileHandler.contents = new ArrayList<>();
+        fileHandler.reqs = new ArrayList<>();
+        fileHandler.unlocks = new ArrayList<>();
+
+//        Text
+        if (!writeStage.getText().isBlank()){fileHandler.text = writeStage.getText();}
+
+
+//        Options
+        if (!optionsArea.getText().isBlank()) {
+            fileHandler.options_text = optionsArea.getText();
+            fileHandler.options = optionsArea.getText().length() - optionsArea.getText().replace("[", "").length();
+        }
+
+//        Links
+        if (!linksArea.getText().isBlank()) {
+            tempArray = linksArea.getText().split("\n");
+            for (String a : tempArray) {
+                tempArray2 = a.split("-");
+                fileHandler.links.addAll(Arrays.asList(tempArray2));
+            }
+        }
+
+//        Requirements
+        if (!itemsNeedArea.getText().isBlank()) {
+            tempArray = itemsNeedArea.getText().split("\n");
+            for (String a : tempArray) {
+                tempArray2 = a.split(" for ");
+                fileHandler.reqs.addAll(Arrays.asList(tempArray2));
+            }
+        }
+
+//        Unlocks
+        if (!itemsGetArea.getText().isBlank()) {
+            fileHandler.unlocks.addAll(List.of(itemsGetArea.getText().split("\n")));
+        }
+
+    }
 }

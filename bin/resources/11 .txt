@@ -1,0 +1,15 @@
+#Text
+#Scene
+
+you don't get a key to test things
+
+#Options
+#[1] - Abruptly stop around the corner and hide in the inside garden
+[2] - Jump out the window onto the neighbouring roof
+[3] - kick down the door
+
+#Links
+
+#Requirements
+
+#Unlocks
