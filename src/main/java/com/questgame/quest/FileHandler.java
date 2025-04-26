@@ -28,7 +28,7 @@ public class FileHandler {
         reqs = new ArrayList<>();
         unlocks = new ArrayList<>();
 
-        String directoryPath = "bin/resources";
+        String directoryPath = "resources";
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
 
@@ -36,7 +36,7 @@ public class FileHandler {
             for (File file : files) {
                 if (file.getName().equals(number +" .txt")) {
                     try {
-                        File script = new File("bin/resources/" + number + " .txt");
+                        File script = new File("resources/" + number + " .txt");
                         Scanner reader = new Scanner(script).useDelimiter("#");
                         while (reader.hasNext())
                         {
@@ -115,7 +115,7 @@ public class FileHandler {
             if (edit_switch) {
 
                 try {
-                    File script = new File("bin/resources/" + number + " .txt");
+                    File script = new File("resources/" + number + " .txt");
                     script.createNewFile();
                 } catch (Exception e) {
                     System.out.println("Error creating");
@@ -134,7 +134,7 @@ public class FileHandler {
     }
 
     protected void formatFile(String number){
-        File script = new File("bin/resources/" + number + " .txt");
+        File script = new File("resources/" + number + " .txt");
         try {
             new FileOutputStream(script).close();
             FileWriter fileWriter = new FileWriter(script);
