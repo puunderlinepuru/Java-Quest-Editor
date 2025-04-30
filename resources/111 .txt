@@ -1,15 +1,20 @@
 #Text
-#One of them stops to check if you're hiding somewhere
+#You run inside the garden, slide in the bushes, catch your breath while you can and try to make as little noise as possible.
+
+While crouched in the bushes you notice a blink in a corner of your eye. Looks like a key that would fit in the staircase door's lock.
+They probably HAVE locked the door and tried to hide the key here so you don't steal it from them and run away.
+
+What's unlucky though is one of them stops near the door to check if you, perhaps, are trying to fool them.
 
 #Options
-#[1] - take off running
-[2] - Try to fight him
-[3] - Throw something to distract him and move past him back where you come from
+#[1] - Take off running. He may not expect the boldness and not be able to catch you
+[2] - Try to fight him. Debatable option
+[3] - Throw something to distract him and move past him to the door you just found a key for.
 
 #Links
-#3-113
+#3 - 113
 
 #Requirements
-#key for 3
 
 #Unlocks
+#key

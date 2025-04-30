@@ -1,5 +1,8 @@
 #Text
-#Yeah they're not making this jump, you're free
+#You check how much of you is still alive.
+Aside from a bit of blood on your hands from the shattered window.. you're alright.
+
+Yeah they're not making this jump, you're free.
 
 #Options
 #

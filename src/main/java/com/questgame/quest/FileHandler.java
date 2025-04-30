@@ -117,6 +117,7 @@ public class FileHandler {
                 try {
                     File script = new File("resources/" + number + " .txt");
                     script.createNewFile();
+                    System.out.println("Couldn't find file. File created.");
                 } catch (Exception e) {
                     System.out.println("Error creating");
                 }
@@ -143,7 +144,7 @@ public class FileHandler {
             fileWriter.write("#Text\n#" + text);
 
 //            Options
-            fileWriter.write("\n\n#Options\n#" + options_text + "");
+            fileWriter.write("\n\n#Options\n#" + options_text);
 
 //            Links
             fileWriter.write("\n\n#Links");

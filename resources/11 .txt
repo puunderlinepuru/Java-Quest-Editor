@@ -1,12 +1,26 @@
 #Text
-#Scene
+#You hear footsteps coming from the hallway. 
 
-you don't get a key to test things
+You know you closed all of the windows but you know it wouldn't stop them
+
+You don't know who they are but you know why they're here.
+
+You decide not to wait for them to find you. You grab your backpack and jump out of the apartment door into the corridor.
+
+They totally heard this and you know they're already behind you.
+
+There's a door to the staircase you can use to get to the bottom floor but 
+they surely thought about it and probably locked the door.
+
+There's also a door that usually isn't locked a couple big steps away from you that leads to the roof garden 
+you could probably try to hide in
+
+Also there's a window but you're not that brave... are you?
 
 #Options
 #[1] - Abruptly stop around the corner and hide in the inside garden
 [2] - Jump out the window onto the neighbouring roof
-[3] - kick down the door
+[3] - Try your luck with the staircase door
 
 #Links
 

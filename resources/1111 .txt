@@ -1,0 +1,16 @@
+#Text
+#Yeah he totally didn't expect it.
+
+You're back in the corridor with a key
+
+#Options
+#[1] - Staircase
+[2] - Window (still an option)
+
+#Links
+#1-113
+#2-112
+
+#Requirements
+
+#Unlocks

@@ -46,7 +46,6 @@ public class AppController {
     Pane editTopPane;
 
     FileHandler fileHandler = new FileHandler();
-    String itemsGetString;
     String tempStr;
     String curr_stage;
     String[] tempArray;
@@ -68,7 +67,7 @@ public class AppController {
 //            Links
             tempStr = "";
             for (int i = 0; i < fileHandler.links.size(); i+=2) {
-                tempStr = tempStr.concat(fileHandler.links.get(i) + " - " + fileHandler.links.get(i+1) + "\n");
+                tempStr = tempStr.concat(fileHandler.links.get(i) + "-" + fileHandler.links.get(i+1) + "\n");
             }
             linksArea.setText(tempStr);
 
@@ -80,9 +79,9 @@ public class AppController {
             itemsNeedArea.setText(tempStr);
 
 //            Unlocks
-            itemsGetString = "";
-            for (String a : fileHandler.unlocks) {itemsGetString = itemsGetString.concat(a + "\n");}
-            itemsGetArea.setText(itemsGetString);
+            tempStr = "";
+            for (String a : fileHandler.unlocks) {tempStr = tempStr.concat(a + "\n");}
+            itemsGetArea.setText(tempStr);
 
         }
         else
@@ -191,6 +190,7 @@ public class AppController {
         inventory = new ArrayList<>();
         curr_stage = "1";
         edit_switch = false;
+        System.out.println("stage: " + curr_stage);
         fileHandler.get_from_file(curr_stage, false);
         display();
     }
@@ -200,7 +200,6 @@ public class AppController {
     protected void onChoiceFieldEnter() {
         if (choiceField.getText().isBlank()) {return;}
         fileHandler.get_from_file(curr_stage, edit_switch);
-        System.out.println("getting info for: " + curr_stage);
         if (fileHandler.options >= Integer.parseInt(choiceField.getText()))
         {
             if (!fileHandler.reqs.isEmpty()) {
@@ -208,12 +207,9 @@ public class AppController {
                     if (inventory.contains(fileHandler.reqs.get(fileHandler.reqs.indexOf(choiceField.getText()) - 1))) {
                         if (!fileHandler.links.isEmpty()) {
                             curr_stage = fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1);
-                            System.out.println("stage changed to: " + curr_stage);
-                            System.out.println("links to " + fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1));
                         } else {
                             curr_stage += checkStageNumber(choiceField.getText());
                         }
-                        System.out.println("displaying stage: " + curr_stage);
                         inventory.addAll(fileHandler.unlocks);
                         fileHandler.get_from_file(curr_stage, edit_switch);
                         display();
@@ -223,13 +219,15 @@ public class AppController {
                 choiceField.setText("");
             } else {
                 if (!fileHandler.links.isEmpty()) {
-                    curr_stage = fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1);
-                    System.out.println("stage changed to: " + curr_stage);
-                    System.out.println("links to " + fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1));
+
+                    if (fileHandler.links.contains(choiceField.getText()) & fileHandler.links.indexOf(choiceField.getText())%2 != 1) {
+                        curr_stage = fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1);
+                    }
+                    else {curr_stage += checkStageNumber(choiceField.getText());}
+
                 } else {
                     curr_stage += checkStageNumber(choiceField.getText());
                 }
-                System.out.println("displaying stage: " + curr_stage);
                 inventory.addAll(fileHandler.unlocks);
                 fileHandler.get_from_file(curr_stage, edit_switch);
                 display();

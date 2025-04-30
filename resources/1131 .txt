@@ -1,0 +1,12 @@
+#Text
+#You turn the lock and run onto the staircase. There's only two ways - up and down.
+
+#Options
+#[1] - Go up
+[2] - Go down
+
+#Links
+
+#Requirements
+
+#Unlocks

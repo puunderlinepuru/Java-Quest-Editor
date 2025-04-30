@@ -1,12 +1,14 @@
 #Text
-#Staircase
+#Yup, the door's closed shut and the lock is there - just as you expected.
+
+If you had the key you could open it.
 
 #Options
-#[1] - go up
-[2] - go down
+#[1] - Use the key
 
 #Links
 
 #Requirements
+#key for 1
 
 #Unlocks

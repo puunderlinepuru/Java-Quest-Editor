@@ -1,0 +1,13 @@
+#Text
+#You run multiple stories down until you reach the exit.
+
+You're free.
+
+#Options
+#
+
+#Links
+
+#Requirements
+
+#Unlocks

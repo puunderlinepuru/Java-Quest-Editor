@@ -1,5 +1,8 @@
 #Text
-#Intro
+#This is the introduction stage for the program.
+
+You can edit stages from inside the program from editing mode by pressing "Edit" button.
+All of the text files are located in local directory for the app in "./bin/resources/"
 
 #Options
 #[1] - ok
