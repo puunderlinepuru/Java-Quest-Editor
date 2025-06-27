@@ -1,8 +1,14 @@
 #Text
 #This is the introduction stage for the program.
 
-You can edit stages from inside the program from editing mode by pressing "Edit" button.
+You can edit stages from inside the program in editing mode by pressing "Edit" button.
 All of the text files are located in local directory for the app in "./bin/resources/"
+
+links should be formatted as {option} - {stage} (ex. 1 - 1)
+
+get items Should be formatted as {item}
+
+key items needed should be formatted as {item} for {option}
 
 #Options
 #[1] - ok

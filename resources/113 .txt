@@ -5,6 +5,7 @@ If you had the key you could open it.
 
 #Options
 #[1] - Use the key
+[2] - Try to break in
 
 #Links
 

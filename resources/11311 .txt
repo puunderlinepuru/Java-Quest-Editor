@@ -4,9 +4,10 @@
 You hear fast footsteps from the staircase. Yup, this is Game Over.
 
 #Options
-#
+#[1] - Restart
 
 #Links
+#1 - 1
 
 #Requirements
 

@@ -5,6 +5,7 @@ module com.questgame.quest {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires com.almasb.fxgl.all;
+    requires javafx.graphics;
     requires java.desktop;
 
     opens com.questgame.quest to javafx.fxml;

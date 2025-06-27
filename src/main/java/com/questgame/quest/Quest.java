@@ -18,11 +18,11 @@ public class Quest extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
-
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         stage.centerOnScreen();
         System.out.println("dimensions are: " + d.width + " x " + d.height);
     }
+
 
 
     public static void main(String[] args) {

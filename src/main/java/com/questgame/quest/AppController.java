@@ -57,6 +57,9 @@ public class AppController {
 //            Text
         if (edit_switch)
         {
+//            Stage
+            stageNumber.setText(curr_stage);
+
 //            Text
             writeStage.setText(fileHandler.text);
 
@@ -147,7 +150,6 @@ public class AppController {
 
 
             edit_switch = true;
-            System.out.println("editing mode for stage: " + curr_stage);
         }
         else {
             readStage.setVisible(true);
@@ -179,7 +181,6 @@ public class AppController {
             linksLabel.setDisable(true);
 
             edit_switch = false;
-            System.out.println("reading mode for stage: " + curr_stage);
         }
         display();
         fileHandler.get_from_file(curr_stage, edit_switch);
@@ -189,8 +190,6 @@ public class AppController {
     public void initialize(){
         inventory = new ArrayList<>();
         curr_stage = "1";
-        edit_switch = false;
-        System.out.println("stage: " + curr_stage);
         fileHandler.get_from_file(curr_stage, false);
         display();
     }
@@ -215,6 +214,21 @@ public class AppController {
                         display();
                         choiceField.setText("");
                     }
+                } else {
+                    if (!fileHandler.links.isEmpty()) {
+
+                        if (fileHandler.links.contains(choiceField.getText()) & fileHandler.links.indexOf(choiceField.getText())%2 != 1) {
+                            curr_stage = fileHandler.links.get(fileHandler.links.indexOf(choiceField.getText()) + 1);
+                        }
+                        else {curr_stage += checkStageNumber(choiceField.getText());}
+
+                    } else {
+                        curr_stage += checkStageNumber(choiceField.getText());
+                    }
+                    inventory.addAll(fileHandler.unlocks);
+                    fileHandler.get_from_file(curr_stage, edit_switch);
+                    display();
+                    choiceField.setText("");
                 }
                 choiceField.setText("");
             } else {
@@ -236,7 +250,6 @@ public class AppController {
         } else {
             choiceField.setText("");
         }
-        System.out.println("stage: " + curr_stage);
     }
 
 //    stageNumber;

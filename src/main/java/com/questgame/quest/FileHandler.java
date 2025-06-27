@@ -100,11 +100,6 @@ public class FileHandler {
                             }
                         }
                         unl_section = false;
-/*                        System.out.println("Text: " + text);
-                        System.out.println("options: " + options);
-                        System.out.println("Links: " + links);
-                        System.out.println("Reqs: " + reqs);
-                        System.out.println("Unls: " + unlocks);*/
 
                     } catch (Exception e) {
                         throw new RuntimeException(e);
@@ -124,13 +119,6 @@ public class FileHandler {
             }
 
 //            file
-        }
-    }
-
-
-    protected void spellcheck(String text) {
-        for (int i = 0; i < text.length(); i++) {
-            System.out.println(Character.getName(text.charAt(i)));
         }
     }
 
